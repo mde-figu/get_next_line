@@ -10,23 +10,26 @@ int     main(void)
 
     get_next_line(fd, &str);
 
-    printf("%s", str);
+    printf("Saida do Main:%s", str);
     printf("%c", '\n');
- //   printf("%i", get_next_line(fd, &str));
+    printf("Return GNL%i", get_next_line(fd, &str));
+    printf("%c", '\n');
     
     get_next_line(fd, &str);
-
+    printf("%c", '\n');
+    printf("Saida do Main:%s", str);
+    printf("%c", '\n');
+    printf("Return GNL%i", get_next_line(fd, &str));
+    printf("%c", '\n');
+    get_next_line(fd, &str);
+    printf("%c", '\n');
+    printf("%s", str);
+    get_next_line(fd, &str);
+    printf("%c", '\n');
     printf("%s", str);
     printf("%c", '\n');
-   // printf("%i", get_next_line(fd, &str));
-    get_next_line(fd, &str);
-
-    printf("%s", str);
-    get_next_line(fd, &str);
-
-    printf("%s", str);
-
+    printf("Saida do Main:%s", str);
     printf("%c", '\n');
-  //  printf("%i", get_next_line(fd, &str));
+    printf("Return GNL%i", get_next_line(fd, &str));
     printf("%c", '\n');
 }

@@ -6,28 +6,35 @@
 /*   By: mde-figu <mde-figu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 22:47:51 by mde-figu          #+#    #+#             */
-/*   Updated: 2021/03/03 10:09:37 by mde-figu         ###   ########.fr       */
+/*   Updated: 2021/03/03 21:25:40 by mde-figu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void		*ft_memset(void *s, int c, size_t len)
+void        *ft_calloc(size_t nmemb, size_t size)
 {
-	unsigned char *p;
+    size_t    total_size;
+    void    *ptr;
 
-	p = s;
-	while (len--)
-	{
-		*p++ = (unsigned char)c;
-	}
-	return (s);
+    total_size = nmemb * size;
+    ptr = malloc(total_size);
+    if (ptr == NULL)
+        return (NULL);
+    ft_memset(ptr, 0, total_size);
+    return (ptr);
 }
 
-void		ft_bzero(void *s, size_t n)
+void            *ft_memset(void *s, int c, size_t len)
 {
-	if (sizeof(s) >= 0)
-		ft_memset(s, '\0', n);
+        unsigned char *p;
+
+        p = s;
+        while (len--)
+        {
+                *p++ = (unsigned char)c;
+        }
+        return (s);
 }
 
 size_t		ft_strlen(const char *str)
@@ -96,16 +103,30 @@ void    *ft_memcpy(void *dest, const void *src, size_t n)
     return (dest);
 }
 
-char		*ft_strchr(const char *s, int c)
+char    *ft_substr(char const *s, unsigned int start, size_t len)
 {
-		while (*s)
-		{
-				if (*s == (char)c)
-						return ((char *)s);
-				s = s + 1;
-		}
-		if ((char)c == '\0')
-				return ((char *)s);
-		else
-				return (NULL);
+        char    *nstr;
+        size_t  i;
+
+        if (!s)
+                return (NULL);
+        if ((int)len <= 0 || (int)start < 0 ||
+                (int)start > (int)ft_strlen((char *)s) - 1)
+        {
+                return (ft_strdup(""));
+        }
+        nstr = (char *)ft_calloc(len + 1, sizeof(char));
+        if (!nstr)
+        {
+                return (0);
+        }
+        i = 0;
+        while (i < len && *(s + start) != '\0')
+        {
+                *(nstr + i) = *(s + start);
+                i = i + 1;
+                start = start + 1;
+        }
+        *(nstr + i) = '\0';
+        return (nstr);
 }
