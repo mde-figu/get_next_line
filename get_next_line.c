@@ -6,7 +6,7 @@
 /*   By: mde-figu <mde-figu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:44:44 by mde-figu          #+#    #+#             */
-/*   Updated: 2021/03/03 23:52:46 by mde-figu         ###   ########.fr       */
+/*   Updated: 2021/03/05 00:49:46 by mde-figu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char		**buf_gtr_t_line(char **return_string, char *bufferline,
 	ft_memset(str_tmp, 0, linesize);
 	str_tmp = ft_substr(bufferline, 0, linesize);
 	*return_string = str_tmp;
-	return_string[linesize + 1] = '\0';
+	return_string[linesize + 1] = (char *)'\0';
 	*line = *return_string;
 //	free (bufferline);
 	free ((size_t *)linesize);
@@ -31,6 +31,7 @@ char		**buf_less_eq_t_line(char **return_string, char *bufferline,
 			size_t linesize, char **line)
 {
 	bufferline[sizeof(bufferline) + 1] = '\0';
+	*return_string = bufferline;
 	*line = bufferline;
 //	free (bufferline);
 	linesize = linesize + 1;//isso é pra tapear o gcc
@@ -45,7 +46,7 @@ size_t		len_to_nl(char *bufferline, bool nl_found)
 	{
 		if (bufferline[i] == '\n')
 			{
-			bufferline[i] == 0;
+			bufferline[i] = '\0';
 			nl_found = true;
 			printf("achoooou\n");
 			return (i);
@@ -65,7 +66,7 @@ int		get_next_line(int fd, char **line)
 	bool nl_found;
 	size_t linesize;
 
-	return_string = '\0';
+	return_string = 0;
 	nl_found = false;
 	linesize = 0;
 
