@@ -6,7 +6,7 @@
 /*   By: mde-figu <mde-figu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:54:39 by mde-figu          #+#    #+#             */
-/*   Updated: 2021/03/07 17:34:27 by mde-figu         ###   ########.fr       */
+/*   Updated: 2021/03/07 18:04:21 by mde-figu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		ft_readbuffer(int fd, char *temp_read, char **string_static,
 		if (*n < 0)
 		{
 			free(temp_read);
-			return (-1);
+			return (0);
 		}
 		temp_read[*n] = '\0';
 		if (*string_static == NULL)
@@ -43,7 +43,7 @@ static int		ft_readbuffer(int fd, char *temp_read, char **string_static,
 
 static char		*str_joint(char *string_static, char **line)
 {
-	int i;
+	size_t i;
 	char *tmp;
 
 	i = 0;
@@ -52,8 +52,8 @@ static char		*str_joint(char *string_static, char **line)
 		i++;
 	if ((string_static)[i] == '\n')
 	{
-		tmp = ft_strdup(&((string_static)[i + 1]));
 		*line = ft_substr(string_static, 0, i);
+		tmp = ft_strdup(&((string_static)[i + 1]));
 		free(string_static);
 	}
 	else
@@ -70,6 +70,7 @@ int		get_next_line(int fd, char **line)
 	static char *string_static;
 	int	n;
 
+	n = 1;
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
 	if(!(temp_read = (char *)malloc((BUFFER_SIZE + 1 ) * sizeof(char))))
