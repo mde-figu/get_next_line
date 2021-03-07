@@ -5,44 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-figu <mde-figu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/23 22:47:51 by mde-figu          #+#    #+#             */
-/*   Updated: 2021/03/05 19:13:10 by mde-figu         ###   ########.fr       */
+/*   Created: 2021/03/07 15:54:22 by mde-figu          #+#    #+#             */
+/*   Updated: 2021/03/07 17:19:26 by mde-figu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char		*ft_strnew(size_t size)
-{
-	return (ft_memalloc((size + 1) * sizeof(char)));
-}
-
-void		*ft_memalloc(size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(size);
-	if (ptr == NULL)
-		return (NULL);
-	ft_memset(ptr, 0, size);
-	return (ptr);
-}
-void		*ft_memset(void *s, int c, size_t len)
-{
-	unsigned char *p;
-
-	p = s;
-	while (len--)
-	{
-		*p++ = (unsigned char)c;
-	}
-	return (s);
-}
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
-	size_t		len1;
-	size_t		len2;
+	int		len1;
+	int		len2;
 	char	*jointstr;
 
 	if (!s1 || !s2)
@@ -66,6 +40,37 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (jointstr);
 }
 
+char	*ft_strdup(const char *s)
+{
+	int		len;
+	char	*dest;
+	int 	i;
+
+	i = 0;
+	len = ft_strlen(s);
+	if (!(dest = (char*)malloc((len + 1) * sizeof(char))))
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		dest[i] = s[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+size_t		ft_strlen(const char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != 0)
+	{
+		i++;
+	}
+	return (i);
+}
+
 char		*ft_strchr(const char *s, int c)
 {
 	while (*s)
@@ -79,14 +84,31 @@ char		*ft_strchr(const char *s, int c)
 	else
 		return (NULL);
 }
-size_t		ft_strlen(const char *str)
-{
-	int i;
 
-	i = 0;
-	while (str[i] != 0)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*nstr;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	if ((int)len <= 0 || (int)start < 0 ||
+		(int)start > (int)ft_strlen((char *)s) - 1)
 	{
-		i++;
+		return (ft_strdup(""));
 	}
-	return (i);
+	nstr = (char *)malloc((len + 1) * sizeof(char));
+	if (!nstr)
+	{
+		return (0);
+	}
+	i = 0;
+	while (i < len && *(s + start) != '\0')
+	{
+		*(nstr + i) = *(s + start);
+		i = i + 1;
+		start = start + 1;
+	}
+	*(nstr + i) = '\0';
+	return (nstr);
 }
