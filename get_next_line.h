@@ -6,18 +6,21 @@
 /*   By: mde-figu <mde-figu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:53:39 by mde-figu          #+#    #+#             */
-/*   Updated: 2021/03/07 17:25:42 by mde-figu         ###   ########.fr       */
+/*   Updated: 2021/03/07 18:25:14 by mde-figu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 #	define GET_NEXT_LINE_H
-# include <stdio.h>
-# include <string.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <sys/resource.h>
+# include <fcntl.h>
 # include <unistd.h>
+# include <string.h>
 # include <stdlib.h>
-# include <fcntl.h> //inclui read, open...
-# include <stdbool.h> // inclui o bool
+# include <ctype.h>
+# include <limits.h>
 
 int		get_next_line(int fd, char **line);
 size_t		ft_strlen(const char *str);
