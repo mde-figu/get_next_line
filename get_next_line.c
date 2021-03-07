@@ -6,7 +6,7 @@
 /*   By: mde-figu <mde-figu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:54:39 by mde-figu          #+#    #+#             */
-/*   Updated: 2021/03/07 18:04:21 by mde-figu         ###   ########.fr       */
+/*   Updated: 2021/03/07 18:36:09 by mde-figu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ static int		ft_readbuffer(int fd, char *temp_read, char **string_static,
 			*string_static = tmp_string;
 		}
 		if (ft_strchr(temp_read, '\n'))
-			break;
+			break ;
 	}
-	free (temp_read);
+	free(temp_read);
 	return (1);
 }
 
 static char		*str_joint(char *string_static, char **line)
 {
-	size_t i;
-	char *tmp;
+	size_t	i;
+	char	*tmp;
 
 	i = 0;
 	tmp = NULL;
@@ -64,21 +64,21 @@ static char		*str_joint(char *string_static, char **line)
 	return (tmp);
 }
 
-int		get_next_line(int fd, char **line)
+int				get_next_line(int fd, char **line)
 {
-	char *temp_read;
-	static char *string_static;
-	int	n;
+	char		*temp_read;
+	static char	*string_static;
+	int			n;
 
 	n = 1;
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if(!(temp_read = (char *)malloc((BUFFER_SIZE + 1 ) * sizeof(char))))
+	if (!(temp_read = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char))))
 		return (-1);
-	if(!(ft_readbuffer(fd, temp_read, &string_static, &n)))
+	if (!(ft_readbuffer(fd, temp_read, &string_static, &n)))
 		return (-1);
 	string_static = str_joint(string_static, line);
-	if(n == 0 && !string_static)
+	if (n == 0 && !string_static)
 		return (0);
 	return (1);
 }

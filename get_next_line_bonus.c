@@ -6,7 +6,7 @@
 /*   By: mde-figu <mde-figu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:54:39 by mde-figu          #+#    #+#             */
-/*   Updated: 2021/03/07 18:21:45 by mde-figu         ###   ########.fr       */
+/*   Updated: 2021/03/07 18:37:37 by mde-figu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ static int		ft_readbuffer(int fd, char *temp_read, char **string_static,
 			*string_static = tmp_string;
 		}
 		if (ft_strchr(temp_read, '\n'))
-			break;
+			break ;
 	}
-	free (temp_read);
+	free(temp_read);
 	return (1);
 }
 
 static char		*str_joint(char *string_static, char **line)
 {
-	size_t i;
-	char *tmp;
+	size_t	i;
+	char	*tmp;
 
 	i = 0;
 	tmp = NULL;
@@ -64,21 +64,21 @@ static char		*str_joint(char *string_static, char **line)
 	return (tmp);
 }
 
-int		get_next_line(int fd, char **line)
+int				get_next_line(int fd, char **line)
 {
-	char *temp_read;
-	static char *string_static[OPEN_MAX];
-	int	n;
+	char		*temp_read;
+	static char	*string_static[OPEN_MAX];
+	int			n;
 
 	n = 1;
 	if (fd < 0 || !line || BUFFER_SIZE <= 0 || fd > RLIMIT_NOFILE)
 		return (-1);
-	if(!(temp_read = (char *)malloc((BUFFER_SIZE + 1 ) * sizeof(char))))
+	if (!(temp_read = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char))))
 		return (-1);
-	if(!(ft_readbuffer(fd, temp_read, &string_static[fd], &n)))
+	if (!(ft_readbuffer(fd, temp_read, &string_static[fd], &n)))
 		return (-1);
 	string_static[fd] = str_joint(string_static[fd], line);
-	if(n == 0 && !string_static[fd])
+	if (n == 0 && !string_static[fd])
 		return (0);
 	return (1);
 }

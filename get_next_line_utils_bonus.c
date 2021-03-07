@@ -6,13 +6,13 @@
 /*   By: mde-figu <mde-figu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:54:22 by mde-figu          #+#    #+#             */
-/*   Updated: 2021/03/07 18:21:51 by mde-figu         ###   ########.fr       */
+/*   Updated: 2021/03/07 18:38:23 by mde-figu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char		*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
 	int		len1;
@@ -40,11 +40,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (jointstr);
 }
 
-char	*ft_strdup(const char *s)
+char		*ft_strdup(const char *s)
 {
 	int		len;
 	char	*dest;
-	int 	i;
+	int		i;
 
 	i = 0;
 	len = ft_strlen(s);
@@ -85,7 +85,7 @@ char		*ft_strchr(const char *s, int c)
 		return (NULL);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char		*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*nstr;
 	size_t	i;
