@@ -6,7 +6,7 @@
 /*   By: mde-figu <mde-figu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:53:39 by mde-figu          #+#    #+#             */
-/*   Updated: 2021/03/07 18:32:46 by mde-figu         ###   ########.fr       */
+/*   Updated: 2021/07/16 11:58:22 by mde-figu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@
 # include <stdlib.h>
 # include <ctype.h>
 # include <limits.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
+#  define OPEN_MAX 256
+# endif
 
 int			get_next_line(int fd, char **line);
-size_t		ft_strlen(const char *str);
-char		*ft_strdup(const char *s);
-char		*ft_strjoin(char const *s1, char const *s2);
-char		*ft_strchr(const char *s, int c);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
+size_t		ft_strlen_gnl(const char *str);
+char		*ft_strdup_gnl(const char *s);
+char		*ft_strjoin_gnl(char const *s1, char const *s2);
+char		*ft_strchr_gnl(const char *s, int c);
+char		*ft_substr_gnl(char const *s, unsigned int start, size_t len);
 
 #endif

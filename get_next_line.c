@@ -6,7 +6,7 @@
 /*   By: mde-figu <mde-figu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:54:39 by mde-figu          #+#    #+#             */
-/*   Updated: 2021/03/07 18:36:09 by mde-figu         ###   ########.fr       */
+/*   Updated: 2021/07/16 11:59:57 by mde-figu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static int		ft_readbuffer(int fd, char *temp_read, char **string_static,
 		}
 		temp_read[*n] = '\0';
 		if (*string_static == NULL)
-			*string_static = ft_strdup(temp_read);
+			*string_static = ft_strdup_gnl(temp_read);
 		else
 		{
-			tmp_string = ft_strjoin(*string_static, temp_read);
+			tmp_string = ft_strjoin_gnl(*string_static, temp_read);
 			free(*string_static);
 			*string_static = tmp_string;
 		}
-		if (ft_strchr(temp_read, '\n'))
+		if (ft_strchr_gnl(temp_read, '\n'))
 			break ;
 	}
 	free(temp_read);
@@ -52,13 +52,13 @@ static char		*str_joint(char *string_static, char **line)
 		i++;
 	if ((string_static)[i] == '\n')
 	{
-		*line = ft_substr(string_static, 0, i);
-		tmp = ft_strdup(&((string_static)[i + 1]));
+		*line = ft_substr_gnl(string_static, 0, i);
+		tmp = ft_strdup_gnl(&((string_static)[i + 1]));
 		free(string_static);
 	}
 	else
 	{
-		*line = ft_strdup(string_static);
+		*line = ft_strdup_gnl(string_static);
 		free(string_static);
 	}
 	return (tmp);
